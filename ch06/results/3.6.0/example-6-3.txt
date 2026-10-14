@@ -1,0 +1,2 @@
+committed_at	snapshot_id	checkpoint_id	batch_index
+2026-10-13 18:21:46.695	4838567055991776612	NULL	NULL

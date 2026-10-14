@@ -1,0 +1,20 @@
+openjdk version "21.0.12.1" 2026-08-18 LTS
+Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+Input, in arrival order:
+  4412 -> enterprise, record time 2026-10-13T10:07:00Z (the update)
+  4412 -> trial, record time 2026-10-13T10:03:00Z (the insert, arriving late)
+
+KTable with the default (timestamped key-value) store:
+[eosw.KTableOrder.main()] WARN org.apache.kafka.streams.StreamsConfig - Processing exception handler is not enabled for the GlobalThread. It's recommended to set `processing.exception.handler.global.enabled` to true to enable it. Enabling the processing exception handler for global state/KTable processing now, ensures future backward compatibility. The processing exception handler will get enabled by default with Apache Kafka 5.0 release.
+[eosw.KTableOrder.main()] WARN org.apache.kafka.streams.processor.internals.StateDirectory - Using an OS temp directory in the state.dir property can cause failures with writing the checkpoint file due to the fact that this directory can be cleared by the OS. Resolved state.dir: [/tmp/kafka-streams]
+[eosw.KTableOrder.main()] WARN org.apache.kafka.streams.kstream.internals.KTableSource - Detected out-of-order KTable update for customers-store, old timestamp=[1791886020000] new timestamp=[1791885780000]. topic=[customers] partition=[0] offset=[1].
+  store value: trial, record time 2026-10-13T10:03:00Z
+  updates sent downstream: [enterprise, trial]
+
+KTable with a versioned store (history retention 1 hour):
+[eosw.KTableOrder.main()] WARN org.apache.kafka.streams.StreamsConfig - Processing exception handler is not enabled for the GlobalThread. It's recommended to set `processing.exception.handler.global.enabled` to true to enable it. Enabling the processing exception handler for global state/KTable processing now, ensures future backward compatibility. The processing exception handler will get enabled by default with Apache Kafka 5.0 release.
+[eosw.KTableOrder.main()] WARN org.apache.kafka.streams.processor.internals.StateDirectory - Using an OS temp directory in the state.dir property can cause failures with writing the checkpoint file due to the fact that this directory can be cleared by the OS. Resolved state.dir: [/tmp/kafka-streams]
+[eosw.KTableOrder.main()] WARN org.apache.kafka.streams.kstream.internals.KTableSource - Detected out-of-order KTable update for customers-store, old timestamp=[1791886020000] new timestamp=[1791885780000]. topic=[customers] partition=[0] offset=[1].
+  store value: enterprise, valid from 2026-10-13T10:07:00Z
+  store value as of 2026-10-13T10:05:00Z: trial, valid from 2026-10-13T10:03:00Z
+  updates sent downstream: [enterprise, trial]

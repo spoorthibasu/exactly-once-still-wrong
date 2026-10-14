@@ -1,0 +1,81 @@
+# Copyright 2026 Spoorthi Basu
+# SPDX-License-Identifier: Apache-2.0
+#
+# Chapter 6 of "Exactly Once, Still Wrong": MySQL, Flink with Flink CDC, and
+# an Iceberg table on local storage, plus Spark SQL to query it.
+#
+#   FLINK_CDC_VERSION=3.6.0 docker compose up -d
+#   FLINK_CDC_VERSION=3.7.0 docker compose up -d
+#
+# FLINK_CDC_VERSION picks which release `up` builds and starts, and defaults
+# to 3.6.0, so exec, logs, and down work without it. Running `up` again
+# without it switches the stack back to 3.6.0.
+#
+# The Flink web UI and REST API listen on 127.0.0.1 only. Set FLINK_UI_PORT
+# to use a port other than 8081.
+
+name: eosw-ch06
+
+x-flink-build: &flink-build
+  context: ./flink
+  args:
+    FLINK_CDC_VERSION: ${FLINK_CDC_VERSION:-3.6.0}
+
+x-flink-environment: &flink-environment
+  FLINK_PROPERTIES: |
+    jobmanager.rpc.address: jobmanager
+    taskmanager.numberOfTaskSlots: 2
+    execution.checkpointing.interval: 5min
+
+services:
+  mysql:
+    image: mysql:8.0.46@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
+    environment:
+      MYSQL_ROOT_PASSWORD: cdc-demo
+    command:
+      - --server-id=1
+      - --log-bin=mysql-bin
+      - --binlog-format=ROW
+      - --binlog-row-image=FULL
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro,z
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pcdc-demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+  jobmanager:
+    build: *flink-build
+    image: eosw-ch06-flink:${FLINK_CDC_VERSION:-3.6.0}
+    command: jobmanager
+    ports:
+      - "127.0.0.1:${FLINK_UI_PORT:-8081}:8081"
+    environment: *flink-environment
+    volumes:
+      - warehouse:/opt/warehouse
+      - ./customers-to-iceberg.yaml:/opt/flink-cdc/customers-to-iceberg.yaml:ro,z
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  taskmanager:
+    build: *flink-build
+    image: eosw-ch06-flink:${FLINK_CDC_VERSION:-3.6.0}
+    command: taskmanager
+    environment: *flink-environment
+    volumes:
+      - warehouse:/opt/warehouse
+    depends_on:
+      - jobmanager
+
+  spark:
+    build: ./spark
+    image: eosw-ch06-spark:3.5.8-iceberg-1.10.1
+    command: ["tail", "-f", "/dev/null"]
+    volumes:
+      - warehouse:/opt/warehouse
+      - ./sql:/opt/ch06/sql:ro,z
+
+volumes:
+  warehouse:

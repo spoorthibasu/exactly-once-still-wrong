@@ -1,0 +1,19 @@
+[2026-10-13 21:50:13,980] INFO Starting the log cleaner (org.apache.kafka.storage.internals.log.LogCleaner)
+[2026-10-13 21:50:14,032] INFO [kafka-log-cleaner-thread-0]: Starting (org.apache.kafka.storage.internals.log.LogCleaner$CleanerThread)
+[2026-10-13 21:50:44,058] INFO Cleaner 0: Beginning cleaning of log customers-0 (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,059] INFO Cleaner 0: Building offset map for customers-0... (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,099] INFO Cleaner 0: Building offset map for log customers-0 for 1 segments in offset range [0, 3). (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,103] INFO Cleaner 0: Offset map for log customers-0 complete. (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,108] INFO Cleaner 0: Cleaning log customers-0 (cleaning prior to Tue Oct 13 21:50:20 GMT 2026, discarding tombstones prior to upper bound deletion horizon Thu Jan 01 00:00:00 GMT 1970)... (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,111] INFO Cleaner 0: Cleaning LogSegment(baseOffset=0, size=513, lastModifiedTime=1791928220388, largestRecordTimestamp=1791928220369) in log customers-0 into 0 with an upper bound deletion horizon 0 computed from the segment last modified time of 1791928220388,retaining deletes. (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,115] INFO Cleaner 0: Swapping in cleaned segment LogSegment(baseOffset=0, size=298, lastModifiedTime=1791928220388, largestRecordTimestamp=1791928220369) for segment(s) [LogSegment(baseOffset=0, size=513, lastModifiedTime=1791928220388, largestRecordTimestamp=1791928220369)] in log Log(dir=/tmp/kraft-combined-logs/customers-0, topicId=hGfdmFB5SWyQ-HSKxxFYpA, topic=customers, partition=0, highWatermark=4, lastStableOffset=4, logStartOffset=0, logEndOffset=4) (org.apache.kafka.storage.internals.log.Cleaner)
+[2026-10-13 21:50:44,117] INFO [kafka-log-cleaner-thread-0]: 
+	Log cleaner thread 0 cleaned log customers-0 (dirty section = [0, 3])
+	0.0 MB of log processed in 0.1 seconds (0.0 MB/sec).
+	Indexed 0.0 MB in 0.0 seconds (0.0 Mb/sec, 77.2% of total time)
+	Buffer utilization: 0.0%
+	Cleaned 0.0 MB in 0.0 seconds (0.0 Mb/sec, 22.8% of total time)
+	Start size: 0.0 MB (3 messages)
+	End size: 0.0 MB (1 messages)
+	41.9% size reduction (66.7% fewer messages)
+ (org.apache.kafka.storage.internals.log.LogCleaner$CleanerThread)

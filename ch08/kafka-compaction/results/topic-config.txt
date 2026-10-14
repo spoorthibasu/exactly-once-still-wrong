@@ -1,0 +1,5 @@
+Dynamic configs for topic customers are:
+  cleanup.policy=compact sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:cleanup.policy=compact, DEFAULT_CONFIG:log.cleanup.policy=delete}
+  min.cleanable.dirty.ratio=0.01 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:min.cleanable.dirty.ratio=0.01, DEFAULT_CONFIG:log.cleaner.min.cleanable.ratio=0.5}
+  min.compaction.lag.ms=0 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:min.compaction.lag.ms=0, DEFAULT_CONFIG:log.cleaner.min.compaction.lag.ms=0}
+  segment.ms=1000 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:segment.ms=1000}

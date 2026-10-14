@@ -1,0 +1,3 @@
+CreateTime:1791928218001	Offset:0	4412	{"customer_id":4412,"plan":"trial","source_version":1,"writer":"pipeline, the 10:03 insert"}
+CreateTime:1791928219278	Offset:1	4412	{"customer_id":4412,"plan":"enterprise","source_version":2,"writer":"pipeline, the 10:07 update"}
+CreateTime:1791928220369	Offset:2	4412	{"customer_id":4412,"plan":"trial","source_version":1,"writer":"backfill, replaying the 10:03 insert"}

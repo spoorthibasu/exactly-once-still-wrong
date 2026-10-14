@@ -1,0 +1,14 @@
+2026-10-13T21:50:11Z Starting Kafka
+2026-10-13T21:50:16Z Creating compacted topic customers (one partition)
+2026-10-13T21:50:17Z Producing three versions of customer 4412, each from its own producer
+2026-10-13T21:50:30Z Before compaction, records for key 4412: 3
+2026-10-13T21:50:30Z Lowering segment.ms to 1 second, then producing one record for another key so the segment rolls
+2026-10-13T21:50:34Z Waiting for the log cleaner (it checks every 15 seconds by default)
+2026-10-13T21:51:06Z After compaction, records for key 4412: 1
+2026-10-13T21:51:07Z Before:
+CreateTime:1791928218001	Offset:0	4412	{"customer_id":4412,"plan":"trial","source_version":1,"writer":"pipeline, the 10:03 insert"}
+CreateTime:1791928219278	Offset:1	4412	{"customer_id":4412,"plan":"enterprise","source_version":2,"writer":"pipeline, the 10:07 update"}
+CreateTime:1791928220369	Offset:2	4412	{"customer_id":4412,"plan":"trial","source_version":1,"writer":"backfill, replaying the 10:03 insert"}
+2026-10-13T21:51:07Z After:
+CreateTime:1791928220369	Offset:2	4412	{"customer_id":4412,"plan":"trial","source_version":1,"writer":"backfill, replaying the 10:03 insert"}
+2026-10-13T21:51:09Z Done

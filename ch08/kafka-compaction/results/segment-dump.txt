@@ -1,0 +1,8 @@
+Dumping /tmp/kraft-combined-logs/customers-0/00000000000000000000.log
+Log starting offset: 0
+baseOffset: 0 lastOffset: 0 count: 0 baseSequence: 0 lastSequence: 0 producerId: 0 producerEpoch: 0 partitionLeaderEpoch: 0 isTransactional: false isControl: false deleteHorizonMs: OptionalLong.empty position: 0 CreateTime: 1791928218001 size: 61 magic: 2 compresscodec: none crc: 975379283 isvalid: true
+baseOffset: 1 lastOffset: 1 count: 0 baseSequence: 0 lastSequence: 0 producerId: 1 producerEpoch: 0 partitionLeaderEpoch: 0 isTransactional: false isControl: false deleteHorizonMs: OptionalLong.empty position: 61 CreateTime: 1791928219278 size: 61 magic: 2 compresscodec: none crc: 1634303969 isvalid: true
+baseOffset: 2 lastOffset: 2 count: 1 baseSequence: 0 lastSequence: 0 producerId: 2 producerEpoch: 0 partitionLeaderEpoch: 0 isTransactional: false isControl: false deleteHorizonMs: OptionalLong.empty position: 122 CreateTime: 1791928220369 size: 176 magic: 2 compresscodec: none crc: 2414908104 isvalid: true
+| offset: 2 CreateTime: 1791928220369 keySize: 4 valueSize: 102 sequence: 0 headerKeys: [] key: 4412 payload: {"customer_id":4412,"plan":"trial","source_version":1,"writer":"backfill, replaying the 10:03 insert"}
+Non-consecutive offsets in /tmp/kraft-combined-logs/customers-0/00000000000000000000.log
+  -1 is followed by 2

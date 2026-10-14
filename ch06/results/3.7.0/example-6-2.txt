@@ -1,0 +1,3 @@
+sequence_number	content	record_count	file_path
+2	0	1	/opt/warehouse/crm/customers/data/00000-0-d7e42e2c-18da-4ccd-b742-97fdab305278-00001.parquet
+2	2	2	/opt/warehouse/crm/customers/data/00000-0-d7e42e2c-18da-4ccd-b742-97fdab305278-00002.parquet

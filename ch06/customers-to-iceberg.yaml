@@ -1,0 +1,16 @@
+source:
+  type: mysql
+  hostname: mysql
+  port: 3306
+  username: root
+  password: cdc-demo
+  tables: crm.customers
+
+sink:
+  type: iceberg
+  catalog.properties.type: hadoop
+  catalog.properties.warehouse: /opt/warehouse
+
+pipeline:
+  name: customers-to-iceberg
+  parallelism: 1

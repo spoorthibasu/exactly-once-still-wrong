@@ -1,0 +1,6 @@
+2026-10-13T21:52:09Z Starting PostgreSQL with pgvector
+2026-10-13T21:52:12Z Running sql/plain-upsert.sql on a fresh table
+2026-10-13T21:52:12Z Stored row:  4412 | trial | 1
+2026-10-13T21:52:12Z Running sql/versioned-upsert.sql on a fresh table
+2026-10-13T21:52:12Z Stored row:  4412 | enterprise | 2
+2026-10-13T21:52:12Z Done

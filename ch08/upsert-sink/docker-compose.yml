@@ -1,0 +1,15 @@
+# Copyright 2026 Spoorthi Basu
+# SPDX-License-Identifier: Apache-2.0
+#
+# PostgreSQL 18 with the pgvector extension. The password is a local demo value.
+name: eosw-ch08-upsert
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg18@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11
+    environment:
+      POSTGRES_PASSWORD: ch08-demo
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 2s
+      retries: 30
